@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300;400;500;600;700;800;900&display=swap');
+
+$main: #ffd200;
+$semi-light: #ffe670;
+$light: #ffefa4;
+$semi-dark: #d9b100;
+$dark: #a78900;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Recursive', sans-serif;
+}
