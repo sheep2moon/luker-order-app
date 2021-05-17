@@ -94,6 +94,7 @@ $dark: #a78900;
       bottom: 0;
       cursor: pointer;
       opacity: 0;
+      z-index: 2;
     }
     & span {
       position: absolute;
@@ -108,5 +109,11 @@ $dark: #a78900;
     width: 400px;
     height: 400px;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & img {
+      width: 350px;
+    }
   }
 }

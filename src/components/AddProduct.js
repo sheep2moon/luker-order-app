@@ -1,25 +1,21 @@
 import React, { useRef, useState } from 'react';
-import { projectStorage } from '../firebase/config';
+import {
+  projectStorage,
+  timestamp,
+  projectFirestore,
+} from '../firebase/config';
 import '../styles/addProduct.scss';
 
 const AddProduct = () => {
   const [file, setFile] = useState(null);
   const [fileImg, setFileImg] = useState();
-  const [productData, setProductData] = useState({
-    image: null,
-    name: null,
-    price: null,
-    description: null,
-    category: null,
-    isFeatured: null,
-    variants: [],
-  });
+  const [productData, setProductData] = useState({});
   const nameRef = useRef();
   const priceRef = useRef();
   const descriptionRef = useRef();
   const categoryRef = useRef();
   const isFeaturedRef = useRef();
-  const variantsRef = useRef();
+  const collectionRef = projectFirestore.collection('products');
 
   const handleFileChange = (e) => {
     e.preventDefault();
@@ -38,7 +34,6 @@ const AddProduct = () => {
     const description = descriptionRef.current.value;
     const category = categoryRef.current.value;
     const isFeatured = isFeaturedRef.current.checked;
-    const variants = variantsRef.current.value;
 
     const storageRef = projectStorage.ref(file.name);
     try {
@@ -49,14 +44,20 @@ const AddProduct = () => {
         async () => {
           const image = await storageRef.getDownloadURL();
           setProductData({
+            addedAt: timestamp(),
             image,
             name,
             price,
             description,
             category,
             isFeatured,
-            variants: [variants.split(',')],
           });
+          console.log(productData);
+          collectionRef
+            .doc(productData.name)
+            .set(productData)
+            .then(() => console.log('product added'))
+            .catch((err) => console.log(err));
         }
       );
     } catch (error) {
@@ -78,7 +79,7 @@ const AddProduct = () => {
           </div>
 
           <div className='image-preview'>
-            <img src={fileImg} alt='' width='200' />
+            <img src={fileImg} alt='preview' />
           </div>
         </div>
         <div className='form-second-column'>
@@ -97,15 +98,6 @@ const AddProduct = () => {
           <div className='form-entry'>
             <label htmlFor='category'>Kategoria</label>
             <input type='text' name='category' ref={categoryRef} />
-          </div>
-          <div className='form-entry'>
-            <label htmlFor='variants'>Warianty</label>
-            <input
-              placeholder='np: czekoladowy,malinowy,bez lukru'
-              type='text'
-              name='variants'
-              ref={variantsRef}
-            />
           </div>
           <div className='featured-checkbox'>
             <label htmlFor='featured'>Produkt wyróżniony?</label>
