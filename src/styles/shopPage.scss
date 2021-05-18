@@ -1,0 +1,14 @@
+.shop-page-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.shop-products-grid {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  place-items: center;
+}
