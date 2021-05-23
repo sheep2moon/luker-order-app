@@ -7,7 +7,7 @@ export function useCart() {
 }
 
 const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState({});
+  const [cart, setCart] = useState([]);
 
   const value = {
     cart,

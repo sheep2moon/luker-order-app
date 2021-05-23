@@ -4,8 +4,10 @@ import cartIcon from '../assets/cart.svg';
 import '../styles/layout.scss';
 import logoIcon from '../assets/logo.svg';
 import { useAuth } from '../contexts/AuthContext';
+import { useCart } from '../contexts/CartContext';
 
 const Layout = ({ children }) => {
+  const { cart } = useCart();
   const { login, user } = useAuth();
   if (!user) {
     login();
@@ -31,7 +33,12 @@ const Layout = ({ children }) => {
             <Link to='/add-product'>Dodaj produkt</Link>
           </li>
         </ul>
-        <img src={cartIcon} alt='' width='50' />
+        <Link to='/cart'>
+          <div className='cart-icon'>
+            <span>{cart.length}</span>
+            <img src={cartIcon} alt='' width='50' />
+          </div>
+        </Link>
       </nav>
       {children}
     </>
