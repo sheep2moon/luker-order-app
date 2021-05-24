@@ -19,6 +19,24 @@ nav {
       border-bottom: 2px solid $light;
     }
   }
+  & .cart-icon {
+    position: relative;
+    & p {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $light;
+      color: #101010;
+
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      text-align: center;
+      border: none;
+      z-index: -1;
+    }
+  }
   & ul {
     position: absolute;
     left: 50%;
@@ -40,6 +58,50 @@ nav {
         }
         &:focus {
           color: $dark;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .desktop-menu {
+    display: none;
+  }
+  .mobile-menu-button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    & img {
+      width: 30px;
+    }
+  }
+  .mobile-menu-links {
+    & ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      list-style: none;
+      background-color: $light;
+      & li {
+        width: 100%;
+
+        padding: 5px 0;
+        border-bottom: 1px solid $semi-light;
+        & a {
+          color: #101010;
+          text-decoration: none;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+        &:hover {
+          background-color: $main;
         }
       }
     }
