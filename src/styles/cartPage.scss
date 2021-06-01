@@ -1,0 +1,17 @@
+$main: #ffd200;
+$semi-light: #ffe670;
+$light: #ffefa4;
+$semi-dark: #d9b100;
+$dark: #a78900;
+
+.cart-container {
+  max-width: 1200px;
+  margin: 20px 20px;
+  & .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    box-shadow: 0 1px 1px $semi-light;
+  }
+}
