@@ -53,8 +53,11 @@ const Layout = ({ children }) => {
         </div>
       </nav>
       <div
-        style={mobileMenuActive ? { display: 'block' } : { display: 'none' }}
-        className='mobile-menu-links'
+        className={
+          mobileMenuActive
+            ? 'mobile-menu-links mobile-menu-active'
+            : 'mobile-menu-links'
+        }
       >
         <ul>
           <li>
